@@ -5,112 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قوانين السيرفر</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <style>
+        :root {
+            --primary-color: #8201be; /* البنفسجي */
+            --secondary-color: #5d008c; /* بنفسجي أغمق */
+            --white-color: #ffffff;
+            --text-color: #212529;
+            --light-bg: #f8f9fa;
+        }
+
         body { 
             font-family: 'Cairo', sans-serif; 
-            /* التدرج اللوني: من البنفسجي (#8201be) إلى الأبيض، يغطي الربع العلوي من الصفحة */
-            background: linear-gradient(180deg, #8201be 0%, #ffffff 25%, #ffffff 100%);
+            /* **الإصلاح:** تم تغيير التوقف من النسبة المئوية (25%) إلى قيمة ثابتة بالبكسل (400px). 
+               الآن سينتهي التدرج البنفسجي دائماً عند ارتفاع 400 بكسل من أعلى الصفحة، بغض النظر عن طول المحتوى في أي تبويب. */
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--white-color) 400px, var(--white-color) 100%);
             background-repeat: no-repeat;
-            background-attachment: fixed; 
+            
             padding-top: 50px; 
-            min-height: 100vh;
+            min-height: 120vh;
+            color: var(--text-color);
         }
-        .main-content { margin-top: 30px; }
-        .title { text-align: center; color: #fff; margin-bottom: 5px; font-weight: 700; }
-        .lead { text-align: center; color: #fff; margin-bottom: 30px; }
+        .main-content { margin-top: 50px; }
         
-        /* ترويسة قسم القوانين */
+        /* ترويسة الصفحة الرئيسية */
         .laws-header {
-            background-color: rgba(255, 255, 255, 0.85); /* خلفية بيضاء شبه شفافة */
-            padding: 30px 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: var(--white-color);
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* ظل احترافي */
+            text-align: center;
         }
-        .laws-header h1 { color: #8201be; }
-        .laws-header p { color: #333; }
+        .laws-header h1 { 
+            color: var(--secondary-color); 
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        .laws-header p { 
+            color: #6c757d; 
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
 
-        /* ترويسة الأزرار الجانبية */
-        .list-group-item.active {
-            background-color: #8201be !important;
-            border-color: #8201be !important;
+        /* قائمة أزرار القوانين الجانبية (الأفخم) */
+        .list-group {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         .list-group-item {
-            color: #333;
+            color: var(--text-color);
             border: none;
-            border-bottom: 1px solid #eee;
+            padding: 15px 20px;
             cursor: pointer;
             text-align: right;
-            transition: all 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            background-color: var(--white-color);
+            border-bottom: 1px solid #f1f1f1;
         }
         .list-group-item:hover {
-            background-color: #f0f0f0;
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+        .list-group-item.active {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: var(--white-color) !important;
+            font-weight: 700;
+            position: relative;
+        }
+        .list-group-item.active:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: var(--secondary-color);
+            border-radius: 0 5px 5px 0;
         }
 
         /* محتوى القوانين */
         .tab-pane {
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            min-height: 400px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            /* لضمان تنسيق النصوص الطويلة بشكل صحيح */
+            padding: 30px;
+            border-radius: 15px;
+            background-color: var(--white-color);
+            min-height: 500px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             white-space: pre-wrap; 
-            line-height: 1.8;
-            color: #333;
+            line-height: 2;
+            border: 1px solid #ddd;
         }
-        .tab-pane h1 { color: #8201be; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; font-size: 1.8rem; }
+        .tab-pane h1 { 
+            color: var(--secondary-color); 
+            border-bottom: 3px solid #eee; 
+            padding-bottom: 15px; 
+            margin-bottom: 30px; 
+            font-size: 2rem; 
+            font-weight: 700;
+        }
         .tab-pane p { 
-            /* لضمان تنسيق النصوص الطويلة بشكل صحيح داخل الـ <p> */
             white-space: pre-wrap;
-            line-height: 1.8;
-            color: #333;
+            line-height: 1.9;
+            color: var(--text-color);
+            font-size: 1rem;
         }
-        
-        /* حقوق النشر */
+
+        /* حقوق الصنع */
         .footer {
             margin-top: 50px;
             padding: 20px;
-            background-color: #f1f1f1;
+            background-color: transparent; /* خلفية شفافة لاندماج أفضل */
             color: #6c757d;
             text-align: center;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #eee;
         }
         .footer-text {
-            color: #8201be;
+            color: var(--primary-color);
             font-weight: bold;
         }
-
     </style>
 </head>
 <body class="main">
     <div class="container main-content">
         <div class="laws-header">
-            <h1 class="title" style="color: #8201be;">قوانين السيرفر</h1>
-            <p class="lead" style="color: #333;">يرجى قراءة القوانين التالية بعناية قبل الدخول إلى السيرفر</p>
+            <h1 class="title">دليل القوانين والأنظمة</h1>
+            <p class="lead">يرجى قراءة القوانين التالية بعناية قبل الدخول إلى السيرفر لضمان تجربة لعب ممتعة وعادلة.</p>
         </div>
 
         <div class="row">
-            <div class="col-lg-3 col-md-4">
+            <div class="col-lg-4 col-md-4">
                 <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-general-list" data-toggle="list" href="#list-general" role="tab">القوانين العامة</a>
-                    <a class="list-group-item list-group-item-action" id="list-nlr-list" data-toggle="list" href="#list-nlr" role="tab">قوانين الحياة الجديدة - NLR</a>
-                    <a class="list-group-item list-group-item-action" id="list-pg-list" data-toggle="list" href="#list-pg" role="tab">الباور جيمنج - PowerGaming</a>
-                    <a class="list-group-item list-group-item-action" id="list-nvl-list" data-toggle="list" href="#list-nvl" role="tab">الخوف على الحياة - NVL</a>
-                    <a class="list-group-item list-group-item-action" id="list-meta-list" data-toggle="list" href="#list-meta" role="tab">الميتا جيمنج - Metagaming</a>
-                    <a class="list-group-item list-group-item-action" id="list-rdm-list" data-toggle="list" href="#list-rdm" role="tab">القتل العشوائي - RDM</a>
-                    <a class="list-group-item list-group-item-action" id="list-nwl-list" data-toggle="list" href="#list-nwl" role="tab">قانون تقدير الحياة - NWL</a>
-                    <a class="list-group-item list-group-item-action" id="list-crime-list" data-toggle="list" href="#list-crime" role="tab">قوانين الاجرام</a>
-                    <a class="list-group-item list-group-item-action" id="list-police-list" data-toggle="list" href="#list-police" role="tab">قوانين الشرطة</a>
-                    <a class="list-group-item list-group-item-action" id="list-ems-list" data-toggle="list" href="#list-ems" role="tab">قوانين الاسعاف</a>
-                    <a class="list-group-item list-group-item-action" id="list-justice-list" data-toggle="list" href="#list-justice" role="tab">قوانين العدل</a>
+                    <a class="list-group-item list-group-item-action active" id="list-general-list" data-toggle="list" href="#list-general" role="tab"><i class="fas fa-gavel fa-fw ml-2"></i>القوانين العامة</a>
+                    <a class="list-group-item list-group-item-action" id="list-nlr-list" data-toggle="list" href="#list-nlr" role="tab"><i class="fas fa-redo fa-fw ml-2"></i>الحياة الجديدة - NLR</a>
+                    <a class="list-group-item list-group-item-action" id="list-pg-list" data-toggle="list" href="#list-pg" role="tab"><i class="fas fa-laptop-code fa-fw ml-2"></i>الباور جيمنج - PowerGaming</a>
+                    <a class="list-group-item list-group-item-action" id="list-nvl-list" data-toggle="list" href="#list-nvl" role="tab"><i class="fas fa-shield-alt fa-fw ml-2"></i>الخوف على الحياة - NVL</a>
+                    <a class="list-group-item list-group-item-action" id="list-meta-list" data-toggle="list" href="#list-meta" role="tab"><i class="fas fa-eye fa-fw ml-2"></i>الميتا جيمنج - Metagaming</a>
+                    <a class="list-group-item list-group-item-action" id="list-rdm-list" data-toggle="list" href="#list-rdm" role="tab"><i class="fas fa-skull-crossbones fa-fw ml-2"></i>القتل العشوائي - RDM</a>
+                    <a class="list-group-item list-group-item-action" id="list-nwl-list" data-toggle="list" href="#list-nwl" role="tab"><i class="fas fa-hand-holding-heart fa-fw ml-2"></i>تقدير الحياة - NWL</a>
+                    <a class="list-group-item list-group-item-action" id="list-crime-list" data-toggle="list" href="#list-crime" role="tab"><i class="fas fa-mask fa-fw ml-2"></i>قوانين الاجرام</a>
+                    
+                    <a class="list-group-item list-group-item-action" id="list-police-list" data-toggle="list" href="#list-police" role="tab"><span class="ml-2">🚓</span> قوانين الشرطة</a>
+                    
+                    <a class="list-group-item list-group-item-action" id="list-ems-list" data-toggle="list" href="#list-ems" role="tab"><i class="fas fa-ambulance fa-fw ml-2"></i>قوانين الاسعاف</a>
+                    <a class="list-group-item list-group-item-action" id="list-justice-list" data-toggle="list" href="#list-justice" role="tab"><i class="fas fa-balance-scale fa-fw ml-2"></i>قوانين العدل</a>
                 </div>
             </div>
 
-            <div class="col-lg-9 col-md-8">
+            <div class="col-lg-8 col-md-8">
                 <div class="tab-content" id="nav-tabContent">
                     
                     <div class="tab-pane fade show active" id="list-general" role="tabpanel">
@@ -280,10 +326,7 @@
     </div>
     
     <footer class="footer">
-        جميع الحقوق محفوظة &copy; 2024
-        <div style="margin-top: 5px;">
-            تم صنع الموقع بواسطة <span class="footer-text">.2iz / Raven</span>
-        </div>
+        تم صنع الموقع بواسطة <span class="footer-text">.2iz / Raven</span>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
