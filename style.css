@@ -1,0 +1,296 @@
+* {
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  position: relative;
+  z-index: 9999999 !important;
+  color: #fff;
+}
+
+nav .acc {
+  font-weight: 600;
+  position: relative;
+  top: 5px;
+}
+
+/* تم الإبقاء على هذا النمط لأنه يضبط مكان عرض نافذة المودال */
+.products .modal.show .modal-dialog {
+  margin-top: 30vh;
+}
+
+.navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  opacity: 0.5;
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+  opacity: 0.5;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+/* أنماط الـ Wave Animation */
+@-webkit-keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+    -webkit-transform: translateX(0) translateZ(0) scaleY(1);
+    -moz-transform: translateX(0) translateZ(0) scaleY(1);
+    -ms-transform: translateX(0) translateZ(0) scaleY(1);
+    -o-transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    -webkit-transform: translateX(-25%) translateZ(0) scaleY(0.55);
+            transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
+  100% {
+    -webkit-transform: translateX(-50%) translateZ(0) scaleY(1);
+            transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+    -webkit-transform: translateX(0) translateZ(0) scaleY(1);
+    -moz-transform: translateX(0) translateZ(0) scaleY(1);
+    -ms-transform: translateX(0) translateZ(0) scaleY(1);
+    -o-transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    -webkit-transform: translateX(-25%) translateZ(0) scaleY(0.55);
+            transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
+  100% {
+    -webkit-transform: translateX(-50%) translateZ(0) scaleY(1);
+            transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+.Wave {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 85%;
+}
+
+.in {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  bottom: 0px;
+}
+
+.waveTop {
+  background: url("../imgs/wave-top.png");
+}
+
+.waveMiddle {
+  background: url("../imgs/wave-mid.png");
+}
+
+.waveBottom {
+  background: url("../imgs/wave-bot.png");
+}
+
+.top {
+  z-index: 15;
+  opacity: 0.5;
+}
+
+.midd {
+  z-index: 10;
+  opacity: 0.75;
+}
+
+.last {
+  z-index: 5;
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+}
+
+.waveTop {
+  background-size: 50% 100px;
+}
+
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.waveMiddle {
+  background-size: 50% 120px;
+}
+
+.waveAnimation .waveMiddle {
+  -webkit-animation: move_wave 10s linear infinite;
+          animation: move_wave 10s linear infinite;
+}
+
+.waveBottom {
+  background-size: 50% 100px;
+}
+
+.waveAnimation .waveBottom {
+  -webkit-animation: move_wave 15s linear infinite;
+          animation: move_wave 15s linear infinite;
+}
+
+/* أنماط قسم القوانين (.laws) */
+.laws {
+  position: relative;
+  z-index: 99999;
+  text-align: center;
+  padding: 150px 0 150px;
+  color: #fff;
+}
+
+.laws .taps {
+  padding-top: 45px;
+}
+
+.laws .tap ul li {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 20px;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 55px 10px;
+}
+
+.laws .tap ul li:first-of-type {
+  margin-top: 25px;
+}
+
+.laws .tap ul li.active {
+  background-color: #8e8e8e;
+}
+
+.laws .tap ul li:hover {
+  background-color: #8e8e8e;
+}
+
+.laws .taps .tap-content {
+  padding-bottom: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  display: none;
+  border-radius: 5px;
+}
+
+.laws .taps .tap-content.active {
+  display: block;
+}
+
+.laws .taps .tap-content p {
+  margin-top: 15px;
+  font-size: 18px;
+  color: rgba(5, 5, 5, 0.541) !important;
+  width: 90%;
+}
+
+.laws .taps .tap-content .btn {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(20%, #012A46), color-stop(80%, #27273c));
+  background-image: linear-gradient(to top, #012A46 20%, #27273c 80%);
+}
+
+.laws .tap-content h1 {
+  color: #333;
+  padding: 18px 0 0 0;
+}
+
+@media (min-width: 320px) {
+  .laws .content p, .laws .tap-content {
+    text-align: center;
+  }
+  .laws .taps .tap-content p {
+    width: 100%;
+  }
+  .laws .tap {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .laws .content p, .laws .tap-content {
+    text-align: right;
+  }
+  .laws .taps .tap-content {
+    margin-top: 30px;
+  }
+}
+
+.laws .title {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.laws .card {
+  margin: 15px 70px;
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+/* أنماط الفوتر */
+.footer {
+  background-color: #eee;
+  padding: 25px 0;
+  font-weight: bold;
+}
+
+.footer img {
+  width: 30px;
+  margin: 11px 15px 0 0;
+  position: relative;
+  left: 28px;
+}
+
+.footer a {
+  color: #505050;
+  text-decoration: none;
+}
+
+.footer a i {
+  font-size: 30px;
+  margin: 11px 15px 0 0;
+  position: relative;
+  left: 28px;
+}
